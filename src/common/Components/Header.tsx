@@ -8,8 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {CssBaseline} from "@mui/material";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export function Header() {
+    const navigate = useNavigate()
+
     const onClickHandle = async () => {
         const state = {
             "email": "finrisk@inbox.ru",
@@ -18,6 +21,7 @@ export function Header() {
         await axios.post('http://5.128.129.194:5000/api/users/login', state)
             .then(response => {
                 console.log(response.data)
+                return navigate('/portfolio')
             })
     }
     return (
